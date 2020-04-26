@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+// 移入公共样式
+import './assets/style/base.scss'
+// 引入 lib-flexible 自动转换 rem 单位
+import 'lib-flexible'
 
 Vue.config.productionTip = false
 
