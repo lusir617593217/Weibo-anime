@@ -1,9 +1,7 @@
 <template>
   <div class="page-end">
-    <div class="my-header">
-      <img @click="goBack" src="../../assets/images/back.png" alt="">
-      <p>完结</p>
-    </div>
+    <!-- header -->
+    <MyHeader title="完结"></MyHeader>
 
     <!-- main -->
     <main>
@@ -18,18 +16,20 @@
 </template>
 
 <script>
+// 引入 header 组件
+import MyHeader from '../../components/MyHeader'
 import { getEndList } from '../../api/cartoon'
 export default {
   name: 'End',
+  components: {
+    MyHeader
+  },
   data () {
     return {
       endList: []
     }
   },
   methods: {
-    goBack () {
-      this.$router.back()
-    },
     goDetail (id) {
       this.$router.push({
         path: `/detail/${id}`
@@ -48,31 +48,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/style/mixin.scss';
-
 .page-end {
   height: 100%;
   display: flex;
   flex-direction: column;
-  .my-header {
-    @include border-bottom;
-    height: 44px;
-    width: 100%;
-    img {
-      width: 44px;
-      height: 44px;
-      float: left;
-    }
-    p {
-      width: 287px;
-      height: 44px;
-      line-height: 44px;
-      text-align: center;
-      color: #333;
-      font-size: 18px;
-      float: left;
-    }
-  }
   main {
     flex: 1;
     overflow: auto;

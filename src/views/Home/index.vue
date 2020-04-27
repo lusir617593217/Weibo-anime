@@ -12,6 +12,10 @@
 
     <!-- main -->
     <main>
+      <div class="no-data" v-if="list.length===0">
+        <img src="../../assets/images/home-no-data.png" alt="">
+        <p>页面加载中...</p>
+      </div>
       <!-- 轮播图 -->
       <div class="banner">
         <Swiper>
@@ -277,6 +281,30 @@ export default {
   main {
     flex: 1;
     overflow: auto;
+    position: relative;
+    // 遮挡层
+    .no-data {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      background-color: #eee;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 184px;
+        height: 184px;
+      }
+      p {
+        font-size: 14px;
+        color: #999;
+        padding-bottom: 40px;
+      }
+    }
     // 轮播图
     .banner {
       width: 375px;
