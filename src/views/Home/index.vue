@@ -54,7 +54,7 @@
         <ul class="book">
           <li class="book-one" v-for="item in fineListOne" :key="item.info_id">
             <div class="pic">
-              <img :src="item.image_ext_url" alt="">
+              <img v-lazy="item.image_ext_url" alt="">
             </div>
             <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
@@ -62,7 +62,7 @@
           <div class="book-small">
             <li class="book-two" v-for="item in fineList" :key="item.info_id">
               <div class="pic">
-                <img :src="item.image_url" alt="">
+                <img v-lazy="item.image_url" alt="">
               </div>
               <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
@@ -79,7 +79,7 @@
         <div class="book-small">
           <li class="book-two" v-for="item in popularList" :key="item.info_id">
             <div class="pic">
-              <img :src="item.image_url" alt="">
+              <img v-lazy="item.image_url" alt="">
             </div>
             <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
@@ -95,7 +95,7 @@
         <ul class="book">
           <li class="book-item" v-for="item in newList" :key="item.info_id">
             <div class="left">
-              <img :src="item.image_url" alt="">
+              <img v-lazy="item.image_url" alt="">
             </div>
             <div class="right">
               <h4>{{ item.title }}</h4>
@@ -119,7 +119,7 @@
         <div class="book-small">
           <li class="book-two" v-for="item in hotList" :key="item.info_id">
             <div class="pic">
-              <img :src="item.image_url" alt="">
+              <img v-lazy="item.image_url" alt="">
             </div>
             <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
@@ -135,7 +135,7 @@
         <ul class="book">
           <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id">
             <div class="pic">
-              <img :src="item.image_ext_url" alt="">
+              <img v-lazy="item.image_ext_url" alt="">
             </div>
             <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
@@ -143,38 +143,13 @@
           <div class="book-small">
             <li class="book-two" v-for="item in xiaobianList" :key="item.info_id">
               <div class="pic">
-                <img :src="item.image_url" alt="">
+                <img v-lazy="item.image_url" alt="">
               </div>
               <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>
             </li>
           </div>
         </ul>
-        <!-- <ul class="book">
-          <li class="book-one">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">总裁在上</div>
-            <p>她，没有反抗的权利</p>
-          </li>
-          <div class="book-small">
-            <li class="book-two">
-              <div class="pic">
-                <img src="" alt="">
-              </div>
-              <div class="title">恶魔，别吻我</div>
-              <p>美男小三居然是恶魔？</p>
-            </li>
-            <li class="book-two">
-              <div class="pic">
-                <img src="" alt="">
-              </div>
-              <div class="title">恶魔，别吻我</div>
-              <p>美男小三居然是恶魔？</p>
-            </li>
-          </div>
-        </ul> -->
       </div>
       <!-- 本周推荐 -->
       <div class="recommend-book-4">
@@ -185,7 +160,7 @@
         <div class="book-small">
           <li class="book-two" v-for="item in weekList" :key="item.info_id">
             <div class="pic">
-              <img :src="item.image_url" alt="">
+              <img v-lazy="item.image_url" alt="">
             </div>
             <div class="title">{{ item.title }}</div>
             <p>{{ item.extra.watching_focus }}</p>

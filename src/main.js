@@ -8,6 +8,14 @@ import './assets/style/base.scss'
 import 'lib-flexible'
 // 引入 swiper 样式
 import 'swiper/css/swiper.min.css'
+// 图片来加载插件
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  loading: require('./assets/images/lazy.gif'),
+  attempt: 1
+})
 
 Vue.config.productionTip = false
 
