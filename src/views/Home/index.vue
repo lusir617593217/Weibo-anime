@@ -49,30 +49,23 @@
       <div class="recommend-book-1">
         <div class="book-header">
           <h3>精品佳作</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('精品佳作', 'h5_recommend_female_fine_works')">更多&gt;</span>
         </div>
         <ul class="book">
-          <li class="book-one">
+          <li class="book-one" v-for="item in fineListOne" :key="item.info_id">
             <div class="pic">
-              <img src="" alt="">
+              <img :src="item.image_ext_url" alt="">
             </div>
-            <div class="title">总裁在上</div>
-            <p>她，没有反抗的权利</p>
+            <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
           </li>
           <div class="book-small">
-            <li class="book-two">
+            <li class="book-two" v-for="item in fineList" :key="item.info_id">
               <div class="pic">
-                <img src="" alt="">
+                <img :src="item.image_url" alt="">
               </div>
-              <div class="title">恶魔，别吻我</div>
-              <p>美男小三居然是恶魔？</p>
-            </li>
-            <li class="book-two">
-              <div class="pic">
-                <img src="" alt="">
-              </div>
-              <div class="title">恶魔，别吻我</div>
-              <p>美男小三居然是恶魔？</p>
+              <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
             </li>
           </div>
         </ul>
@@ -81,36 +74,15 @@
       <div class="recommend-book-2">
         <div class="book-header">
           <h3>人气作品</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('人气作品', 'h5_recommend_female_popular_works')">更多&gt;</span>
         </div>
         <div class="book-small">
-          <li class="book-two">
+          <li class="book-two" v-for="item in popularList" :key="item.info_id">
             <div class="pic">
-              <img src="" alt="">
+              <img :src="item.image_url" alt="">
             </div>
-            <div class="title">帝少专宠霸道妻</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">恶魔，别吻我</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">恶魔，别吻我</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">恶魔，别吻我</div>
-            <p>美男小三居然是恶魔？</p>
+            <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
           </li>
         </div>
       </div>
@@ -118,37 +90,22 @@
       <div class="recommend-book-3">
         <div class="book-header">
           <h3>最新上架</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('最新上架', 'h5_recommend_female_new_arrival')">更多&gt;</span>
         </div>
         <ul class="book">
-          <li class="book-item">
+          <li class="book-item" v-for="item in newList" :key="item.info_id">
             <div class="left">
-              <img src="" alt="">
+              <img :src="item.image_url" alt="">
             </div>
             <div class="right">
-              <h4>一纸契约，惹上冷情南山风景功能</h4>
-              <p>恋爱、总裁</p>
-              <span>翻阅漫画</span>
-            </div>
-          </li>
-          <li class="book-item">
-            <div class="left">
-              <img src="" alt="">
-            </div>
-            <div class="right">
-              <h4>一纸契约，惹上冷情南山风景功能</h4>
-              <p>恋爱、总裁</p>
-              <span>翻阅漫画</span>
-            </div>
-          </li>
-          <li class="book-item">
-            <div class="left">
-              <img src="" alt="">
-            </div>
-            <div class="right">
-              <h4>一纸契约，惹上冷情南山风景功能</h4>
-              <p>恋爱、总裁</p>
-              <span>翻阅漫画</span>
+              <h4>{{ item.title }}</h4>
+              <p>
+                <img src="../../assets/images/type.png" alt="">
+                <i v-for="childrenItem in item.cate_list" :key="childrenItem.cate_id">
+                  {{ childrenItem.cate_cn_name }}、
+                </i>
+              </p>
+              <span> <img src="../../assets/images/type2.png" alt=""> {{ item.extra.sina_nickname }}</span>
             </div>
           </li>
         </ul>
@@ -157,22 +114,15 @@
        <div class="recommend-book-2">
         <div class="book-header">
           <h3>热门连载</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('热门连载', 'h5_recommend_female_hot_serial')">更多&gt;</span>
         </div>
         <div class="book-small">
-          <li class="book-two">
+          <li class="book-two" v-for="item in hotList" :key="item.info_id">
             <div class="pic">
-              <img src="" alt="">
+              <img :src="item.image_url" alt="">
             </div>
-            <div class="title">帝少专宠霸道妻</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">恶魔，别吻我</div>
-            <p>美男小三居然是恶魔？</p>
+            <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
           </li>
         </div>
       </div>
@@ -180,9 +130,27 @@
       <div class="recommend-book-1">
         <div class="book-header">
           <h3>小编推荐</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('小编推荐', 'h5_recommend_female_xiaobian_recommend')">更多&gt;</span>
         </div>
         <ul class="book">
+          <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id">
+            <div class="pic">
+              <img :src="item.image_ext_url" alt="">
+            </div>
+            <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
+          </li>
+          <div class="book-small">
+            <li class="book-two" v-for="item in xiaobianList" :key="item.info_id">
+              <div class="pic">
+                <img :src="item.image_url" alt="">
+              </div>
+              <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
+            </li>
+          </div>
+        </ul>
+        <!-- <ul class="book">
           <li class="book-one">
             <div class="pic">
               <img src="" alt="">
@@ -206,35 +174,21 @@
               <p>美男小三居然是恶魔？</p>
             </li>
           </div>
-        </ul>
+        </ul> -->
       </div>
       <!-- 本周推荐 -->
-       <div class="recommend-book-4">
+      <div class="recommend-book-4">
         <div class="book-header">
           <h3>本周推荐</h3>
-          <span>更多&gt;</span>
+          <span @click="goMore('本周推荐', 'h5_recommend_female_week_recommend')">更多&gt;</span>
         </div>
         <div class="book-small">
-          <li class="book-two">
+          <li class="book-two" v-for="item in weekList" :key="item.info_id">
             <div class="pic">
-              <img src="" alt="">
+              <img :src="item.image_url" alt="">
             </div>
-            <div class="title">帝少专宠霸道妻</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">第三个返回符合</div>
-            <p>美男小三居然是恶魔？</p>
-          </li>
-          <li class="book-two">
-            <div class="pic">
-              <img src="" alt="">
-            </div>
-            <div class="title">辅导费哈哈哈更好</div>
-            <p>美男小三居然是恶魔？</p>
+            <div class="title">{{ item.title }}</div>
+            <p>{{ item.extra.watching_focus }}</p>
           </li>
         </div>
       </div>
@@ -258,10 +212,53 @@ export default {
       list: []
     }
   },
+  computed: {
+    fineListOne () {
+      if (!this.list.h5_recommend_female_fine_works) return
+      return [this.list.h5_recommend_female_fine_works[0]]
+    },
+    fineList () {
+      if (!this.list.h5_recommend_female_fine_works) return
+      return this.list.h5_recommend_female_fine_works.slice(1, 3)
+    },
+    xiaobianOne () {
+      if (!this.list.h5_recommend_female_xiaobian_recommend) return
+      return [this.list.h5_recommend_female_xiaobian_recommend[0]]
+    },
+    xiaobianList () {
+      if (!this.list.h5_recommend_female_xiaobian_recommend) return
+      return this.list.h5_recommend_female_xiaobian_recommend.slice(1, 3)
+    },
+    popularList () {
+      if (!this.list.h5_recommend_female_popular_works) return
+      return this.list.h5_recommend_female_popular_works.slice(0, 4)
+    },
+    newList () {
+      if (!this.list.h5_recommend_female_new_arrival) return
+      return this.list.h5_recommend_female_new_arrival.slice(0, 3)
+    },
+    hotList () {
+      if (!this.list.h5_recommend_female_hot_serial) return
+      return this.list.h5_recommend_female_hot_serial.slice(0, 2)
+    },
+    weekList () {
+      if (!this.list.h5_recommend_female_week_recommend) return
+      return this.list.h5_recommend_female_week_recommend.slice(0, 3)
+    }
+  },
   methods: {
     getHomeData () {
       getHomeData().then(res => {
         this.list = res.data
+      })
+    },
+    goMore (title, type) {
+      this.$router.push({
+        path: '/more',
+        query: {
+          title,
+          type
+        }
       })
     }
   },
@@ -394,7 +391,10 @@ export default {
             height: 215px;
             border-radius: 8px;
             overflow: hidden;
-            background-color: pink;
+            img {
+              width: 100%;
+              height: 100%;
+            }
           }
           .title {
             height: 20px;
@@ -425,20 +425,28 @@ export default {
               width: 167px;
               height: 90px;
               border-radius: 8px;
-              background-color: pink;
               overflow: hidden;
+              img {
+                width: 100%;
+              }
             }
             .title {
               height: 20px;
               font-size: 14px;
               margin-top: 10px;
               color: #666;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             p {
               font-size: 12px;
               height: 16px;
               color: #999;
               margin-bottom: 6px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
@@ -501,20 +509,29 @@ export default {
               width: 167px;
               height: 90px;
               border-radius: 8px;
-              background-color: pink;
               overflow: hidden;
+              img {
+                width: 100%;
+                // height: 100%;
+              }
             }
             .title {
               height: 20px;
               font-size: 14px;
               margin-top: 10px;
               color: #666;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
             p {
               font-size: 12px;
               height: 16px;
               color: #999;
               margin-bottom: 6px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
           }
         }
@@ -570,11 +587,12 @@ export default {
           .left {
             width: 160px;
             height: 90px;
+            overflow: hidden;
             margin-right: 4px;
-            background-color: pink;
             border-radius: 4px;
             img {
               width: 100%;
+              // height: 100%;
             }
           }
           .right {
@@ -599,9 +617,14 @@ export default {
               padding-bottom: 8px;
               height: 24px;
               line-height: 24px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
               img {
                 width: 16px;
+                display: inline-block;
                 height: 16px;
+                vertical-align: middle;
               }
             }
           }
@@ -665,8 +688,11 @@ export default {
               width: 109px;
               height: 150px;
               border-radius: 8px;
-              background-color: pink;
               overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+              }
             }
             .title {
               height: 20px;
