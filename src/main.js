@@ -6,6 +6,8 @@ import store from './store'
 import './assets/style/base.scss'
 // 引入 lib-flexible 自动转换 rem 单位
 import 'lib-flexible'
+// 引入 swiper 样式
+import 'swiper/css/swiper.min.css'
 
 Vue.config.productionTip = false
 

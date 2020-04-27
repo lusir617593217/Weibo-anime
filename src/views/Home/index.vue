@@ -5,8 +5,8 @@
       <img src="../../assets/images/logo.png" alt="" class="logo">
       <div class="header-right">
         <img src="../../assets/images/women.png" alt="">
-        <img src="../../assets/images/search.png" alt="">
-        <img src="../../assets/images/my.png" alt="">
+        <router-link to="/search"><img src="@/assets/images/search.png" alt=""></router-link>
+        <router-link to="/my"><img src="@/assets/images/my.png" alt=""></router-link>
       </div>
     </div>
 
@@ -14,27 +14,34 @@
     <main>
       <!-- 轮播图 -->
       <div class="banner">
-        <div class="swiper"></div>
+        <Swiper>
+          <div class="swiper-slide"
+              v-for="item in list.h5_recommend_female_rotation_map"
+              :key="item.info_id"
+            >
+              <img :src="item.image_url" alt="">
+            </div>
+        </Swiper>
       </div>
 
       <!-- nav -->
       <ul class="nav">
-        <li>
-          <img src="" alt="">
+        <router-link tag="li" to="/daypub">
+          <img src="@/assets/images/classify.png" alt="">
           <p>放送表</p>
-        </li>
-        <li>
-          <img src="" alt="">
+        </router-link>
+        <router-link tag="li" to="/cate">
+          <img src="@/assets/images/classify2.png" alt="">
           <p>分类</p>
-        </li>
-        <li>
-          <img src="" alt="">
+        </router-link>
+        <router-link tag="li" to="/rank">
+          <img src="@/assets/images/rank.png" alt="">
           <p>榜单</p>
-        </li>
-        <li>
-          <img src="" alt="">
+        </router-link>
+        <router-link tag="li" to="/end">
+          <img src="@/assets/images/ending.png" alt="">
           <p>完结</p>
-        </li>
+        </router-link>
       </ul>
 
       <!-- recommend-book -->
@@ -236,8 +243,31 @@
 </template>
 
 <script>
+// 引入轮播图组件
+import Swiper from './Swiper'
+// 引入 封装的 axios 方法
+import { getHomeData } from '../../api/cartoon'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    Swiper
+  },
+  data () {
+    return {
+      list: []
+    }
+  },
+  methods: {
+    getHomeData () {
+      getHomeData().then(res => {
+        this.list = res.data
+      })
+    }
+  },
+  created () {
+    this.getHomeData()
+  }
 }
 </script>
 
@@ -281,13 +311,6 @@ export default {
       height: 222px;
       padding-top: 8px;
       background-color: #fff;
-      .swiper {
-        width: 342px;
-        height: 214px;
-        margin: 0 auto;
-        border-radius: 8px;
-        background-color: pink;
-      }
     }
     // nav
     .nav {
@@ -304,7 +327,6 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: pink;
         img {
           width: 60px;
           height: 60px;
