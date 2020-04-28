@@ -20,6 +20,7 @@
             <div class="swiper-slide"
                 v-for="item in list.h5_recommend_female_rotation_map"
                 :key="item.info_id"
+                @click="goDetail(item.object_id)"
               >
                 <img :src="item.image_url" alt="">
               </div>
@@ -54,7 +55,7 @@
             <span @click="goMore('精品佳作', 'h5_recommend_female_fine_works')">更多&gt;</span>
           </div>
           <ul class="book">
-            <li class="book-one" v-for="item in fineListOne" :key="item.info_id">
+            <li class="book-one" v-for="item in fineListOne" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="pic">
                 <img v-lazy="item.image_ext_url" alt="">
               </div>
@@ -62,7 +63,7 @@
               <p>{{ item.extra.watching_focus }}</p>
             </li>
             <div class="book-small">
-              <li class="book-two" v-for="item in fineList" :key="item.info_id">
+              <li class="book-two" v-for="item in fineList" :key="item.info_id" @click="goDetail(item.object_id)">
                 <div class="pic">
                   <img v-lazy="item.image_url" alt="">
                 </div>
@@ -79,7 +80,7 @@
             <span @click="goMore('人气作品', 'h5_recommend_female_popular_works')">更多&gt;</span>
           </div>
           <div class="book-small">
-            <li class="book-two" v-for="item in popularList" :key="item.info_id">
+            <li class="book-two" v-for="item in popularList" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="pic">
                 <img v-lazy="item.image_url" alt="">
               </div>
@@ -95,7 +96,7 @@
             <span @click="goMore('最新上架', 'h5_recommend_female_new_arrival')">更多&gt;</span>
           </div>
           <ul class="book">
-            <li class="book-item" v-for="item in newList" :key="item.info_id">
+            <li class="book-item" v-for="item in newList" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="left">
                 <img v-lazy="item.image_url" alt="">
               </div>
@@ -119,7 +120,7 @@
             <span @click="goMore('热门连载', 'h5_recommend_female_hot_serial')">更多&gt;</span>
           </div>
           <div class="book-small">
-            <li class="book-two" v-for="item in hotList" :key="item.info_id">
+            <li class="book-two" v-for="item in hotList" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="pic">
                 <img v-lazy="item.image_url" alt="">
               </div>
@@ -135,7 +136,7 @@
             <span @click="goMore('小编推荐', 'h5_recommend_female_xiaobian_recommend')">更多&gt;</span>
           </div>
           <ul class="book">
-            <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id">
+            <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="pic">
                 <img v-lazy="item.image_ext_url" alt="">
               </div>
@@ -143,7 +144,7 @@
               <p>{{ item.extra.watching_focus }}</p>
             </li>
             <div class="book-small">
-              <li class="book-two" v-for="item in xiaobianList" :key="item.info_id">
+              <li class="book-two" v-for="item in xiaobianList" :key="item.info_id" @click="goDetail(item.object_id)">
                 <div class="pic">
                   <img v-lazy="item.image_url" alt="">
                 </div>
@@ -160,7 +161,7 @@
             <span @click="goMore('本周推荐', 'h5_recommend_female_week_recommend')">更多&gt;</span>
           </div>
           <div class="book-small">
-            <li class="book-two" v-for="item in weekList" :key="item.info_id">
+            <li class="book-two" v-for="item in weekList" :key="item.info_id" @click="goDetail(item.object_id)">
               <div class="pic">
                 <img v-lazy="item.image_url" alt="">
               </div>
@@ -240,6 +241,11 @@ export default {
           title,
           type
         }
+      })
+    },
+    goDetail (id) {
+      this.$router.push({
+        path: `/detail/${id}`
       })
     }
   },

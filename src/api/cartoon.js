@@ -57,3 +57,23 @@ export const getRankList = (type) => {
     url: `/api/wbcomic/home/${type}?_type=h5`
   })
 }
+
+// 更多页面接口
+export const getMoreList = (type) => {
+  return request({
+    method: 'get',
+    url: '/api/wbcomic/home/recommend_list',
+    params: {
+      location_en: type,
+      _type: 'h5'
+    }
+  })
+}
+
+// 详情页面接口
+export const getDetailDate = (id) => {
+  return request({
+    method: 'get',
+    url: `/api/wbcomic/comic/comic_show?comic_id=${id}&create_source=h5&_=1588069267216&_type=h5`
+  })
+}
