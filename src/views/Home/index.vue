@@ -12,165 +12,164 @@
 
     <!-- main -->
     <main>
-      <div class="no-data" v-if="list.length===0">
-        <img src="../../assets/images/home-no-data.png" alt="">
-        <p>页面加载中...</p>
-      </div>
-      <!-- 轮播图 -->
-      <div class="banner">
-        <Swiper>
-          <div class="swiper-slide"
-              v-for="item in list.h5_recommend_female_rotation_map"
-              :key="item.info_id"
-            >
-              <img :src="item.image_url" alt="">
-            </div>
-        </Swiper>
-      </div>
-
-      <!-- nav -->
-      <ul class="nav">
-        <router-link tag="li" to="/daypub">
-          <img src="@/assets/images/classify.png" alt="">
-          <p>放送表</p>
-        </router-link>
-        <router-link tag="li" to="/cate">
-          <img src="@/assets/images/classify2.png" alt="">
-          <p>分类</p>
-        </router-link>
-        <router-link tag="li" to="/rank">
-          <img src="@/assets/images/rank.png" alt="">
-          <p>榜单</p>
-        </router-link>
-        <router-link tag="li" to="/end">
-          <img src="@/assets/images/ending.png" alt="">
-          <p>完结</p>
-        </router-link>
-      </ul>
-
-      <!-- recommend-book -->
-      <!-- 精品佳作 -->
-      <div class="recommend-book-1">
-        <div class="book-header">
-          <h3>精品佳作</h3>
-          <span @click="goMore('精品佳作', 'h5_recommend_female_fine_works')">更多&gt;</span>
+      <MyMask :isShow="list.length===0"></MyMask>
+      <section v-if="list.length!==0">
+         <!-- 轮播图 -->
+        <div class="banner">
+          <Swiper>
+            <div class="swiper-slide"
+                v-for="item in list.h5_recommend_female_rotation_map"
+                :key="item.info_id"
+              >
+                <img :src="item.image_url" alt="">
+              </div>
+          </Swiper>
         </div>
-        <ul class="book">
-          <li class="book-one" v-for="item in fineListOne" :key="item.info_id">
-            <div class="pic">
-              <img v-lazy="item.image_ext_url" alt="">
+
+        <!-- nav -->
+        <ul class="nav">
+          <router-link tag="li" to="/daypub">
+            <img src="@/assets/images/classify.png" alt="">
+            <p>放送表</p>
+          </router-link>
+          <router-link tag="li" to="/cate">
+            <img src="@/assets/images/classify2.png" alt="">
+            <p>分类</p>
+          </router-link>
+          <router-link tag="li" to="/rank">
+            <img src="@/assets/images/rank.png" alt="">
+            <p>榜单</p>
+          </router-link>
+          <router-link tag="li" to="/end">
+            <img src="@/assets/images/ending.png" alt="">
+            <p>完结</p>
+          </router-link>
+        </ul>
+
+        <!-- recommend-book -->
+        <!-- 精品佳作 -->
+        <div class="recommend-book-1">
+          <div class="book-header">
+            <h3>精品佳作</h3>
+            <span @click="goMore('精品佳作', 'h5_recommend_female_fine_works')">更多&gt;</span>
+          </div>
+          <ul class="book">
+            <li class="book-one" v-for="item in fineListOne" :key="item.info_id">
+              <div class="pic">
+                <img v-lazy="item.image_ext_url" alt="">
+              </div>
+              <div class="title">{{ item.title }}</div>
+              <p>{{ item.extra.watching_focus }}</p>
+            </li>
+            <div class="book-small">
+              <li class="book-two" v-for="item in fineList" :key="item.info_id">
+                <div class="pic">
+                  <img v-lazy="item.image_url" alt="">
+                </div>
+                <div class="title">{{ item.title }}</div>
+              <p>{{ item.extra.watching_focus }}</p>
+              </li>
             </div>
-            <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
-          </li>
+          </ul>
+        </div>
+        <!-- 人气作品 -->
+        <div class="recommend-book-2">
+          <div class="book-header">
+            <h3>人气作品</h3>
+            <span @click="goMore('人气作品', 'h5_recommend_female_popular_works')">更多&gt;</span>
+          </div>
           <div class="book-small">
-            <li class="book-two" v-for="item in fineList" :key="item.info_id">
+            <li class="book-two" v-for="item in popularList" :key="item.info_id">
               <div class="pic">
                 <img v-lazy="item.image_url" alt="">
               </div>
               <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
+              <p>{{ item.extra.watching_focus }}</p>
             </li>
           </div>
-        </ul>
-      </div>
-      <!-- 人气作品 -->
-      <div class="recommend-book-2">
-        <div class="book-header">
-          <h3>人气作品</h3>
-          <span @click="goMore('人气作品', 'h5_recommend_female_popular_works')">更多&gt;</span>
         </div>
-        <div class="book-small">
-          <li class="book-two" v-for="item in popularList" :key="item.info_id">
-            <div class="pic">
-              <img v-lazy="item.image_url" alt="">
-            </div>
-            <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
-          </li>
+        <!-- 最新上架 -->
+        <div class="recommend-book-3">
+          <div class="book-header">
+            <h3>最新上架</h3>
+            <span @click="goMore('最新上架', 'h5_recommend_female_new_arrival')">更多&gt;</span>
+          </div>
+          <ul class="book">
+            <li class="book-item" v-for="item in newList" :key="item.info_id">
+              <div class="left">
+                <img v-lazy="item.image_url" alt="">
+              </div>
+              <div class="right">
+                <h4>{{ item.title }}</h4>
+                <p>
+                  <img src="../../assets/images/type.png" alt="">
+                  <i v-for="childrenItem in item.cate_list" :key="childrenItem.cate_id">
+                    {{ childrenItem.cate_cn_name }}、
+                  </i>
+                </p>
+                <span> <img src="../../assets/images/type2.png" alt=""> {{ item.extra.sina_nickname }}</span>
+              </div>
+            </li>
+          </ul>
         </div>
-      </div>
-      <!-- 最新上架 -->
-      <div class="recommend-book-3">
-        <div class="book-header">
-          <h3>最新上架</h3>
-          <span @click="goMore('最新上架', 'h5_recommend_female_new_arrival')">更多&gt;</span>
-        </div>
-        <ul class="book">
-          <li class="book-item" v-for="item in newList" :key="item.info_id">
-            <div class="left">
-              <img v-lazy="item.image_url" alt="">
-            </div>
-            <div class="right">
-              <h4>{{ item.title }}</h4>
-              <p>
-                <img src="../../assets/images/type.png" alt="">
-                <i v-for="childrenItem in item.cate_list" :key="childrenItem.cate_id">
-                  {{ childrenItem.cate_cn_name }}、
-                </i>
-              </p>
-              <span> <img src="../../assets/images/type2.png" alt=""> {{ item.extra.sina_nickname }}</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- 热门连载 -->
-       <div class="recommend-book-2">
-        <div class="book-header">
-          <h3>热门连载</h3>
-          <span @click="goMore('热门连载', 'h5_recommend_female_hot_serial')">更多&gt;</span>
-        </div>
-        <div class="book-small">
-          <li class="book-two" v-for="item in hotList" :key="item.info_id">
-            <div class="pic">
-              <img v-lazy="item.image_url" alt="">
-            </div>
-            <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
-          </li>
-        </div>
-      </div>
-      <!-- 小编推荐 -->
-      <div class="recommend-book-1">
-        <div class="book-header">
-          <h3>小编推荐</h3>
-          <span @click="goMore('小编推荐', 'h5_recommend_female_xiaobian_recommend')">更多&gt;</span>
-        </div>
-        <ul class="book">
-          <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id">
-            <div class="pic">
-              <img v-lazy="item.image_ext_url" alt="">
-            </div>
-            <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
-          </li>
+        <!-- 热门连载 -->
+        <div class="recommend-book-2">
+          <div class="book-header">
+            <h3>热门连载</h3>
+            <span @click="goMore('热门连载', 'h5_recommend_female_hot_serial')">更多&gt;</span>
+          </div>
           <div class="book-small">
-            <li class="book-two" v-for="item in xiaobianList" :key="item.info_id">
+            <li class="book-two" v-for="item in hotList" :key="item.info_id">
               <div class="pic">
                 <img v-lazy="item.image_url" alt="">
               </div>
               <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
+              <p>{{ item.extra.watching_focus }}</p>
             </li>
           </div>
-        </ul>
-      </div>
-      <!-- 本周推荐 -->
-      <div class="recommend-book-4">
-        <div class="book-header">
-          <h3>本周推荐</h3>
-          <span @click="goMore('本周推荐', 'h5_recommend_female_week_recommend')">更多&gt;</span>
         </div>
-        <div class="book-small">
-          <li class="book-two" v-for="item in weekList" :key="item.info_id">
-            <div class="pic">
-              <img v-lazy="item.image_url" alt="">
+        <!-- 小编推荐 -->
+        <div class="recommend-book-1">
+          <div class="book-header">
+            <h3>小编推荐</h3>
+            <span @click="goMore('小编推荐', 'h5_recommend_female_xiaobian_recommend')">更多&gt;</span>
+          </div>
+          <ul class="book">
+            <li class="book-one" v-for="item in xiaobianOne" :key="item.info_id">
+              <div class="pic">
+                <img v-lazy="item.image_ext_url" alt="">
+              </div>
+              <div class="title">{{ item.title }}</div>
+              <p>{{ item.extra.watching_focus }}</p>
+            </li>
+            <div class="book-small">
+              <li class="book-two" v-for="item in xiaobianList" :key="item.info_id">
+                <div class="pic">
+                  <img v-lazy="item.image_url" alt="">
+                </div>
+                <div class="title">{{ item.title }}</div>
+              <p>{{ item.extra.watching_focus }}</p>
+              </li>
             </div>
-            <div class="title">{{ item.title }}</div>
-            <p>{{ item.extra.watching_focus }}</p>
-          </li>
+          </ul>
         </div>
-      </div>
+        <!-- 本周推荐 -->
+        <div class="recommend-book-4">
+          <div class="book-header">
+            <h3>本周推荐</h3>
+            <span @click="goMore('本周推荐', 'h5_recommend_female_week_recommend')">更多&gt;</span>
+          </div>
+          <div class="book-small">
+            <li class="book-two" v-for="item in weekList" :key="item.info_id">
+              <div class="pic">
+                <img v-lazy="item.image_url" alt="">
+              </div>
+              <div class="title">{{ item.title }}</div>
+              <p>{{ item.extra.watching_focus }}</p>
+            </li>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -178,13 +177,16 @@
 <script>
 // 引入轮播图组件
 import Swiper from './Swiper'
+// 引入遮罩层
+import MyMask from '../../components/MyMask'
 // 引入 封装的 axios 方法
 import { getHomeData } from '../../api/cartoon'
 
 export default {
   name: 'Home',
   components: {
-    Swiper
+    Swiper,
+    MyMask
   },
   data () {
     return {
@@ -252,6 +254,7 @@ export default {
 .page-home {
   height: 100%;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   background-color: #f8f8f8;
   // header
@@ -282,29 +285,6 @@ export default {
     flex: 1;
     overflow: auto;
     position: relative;
-    // 遮挡层
-    .no-data {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 999;
-      background-color: #eee;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      img {
-        width: 184px;
-        height: 184px;
-      }
-      p {
-        font-size: 14px;
-        color: #999;
-        padding-bottom: 40px;
-      }
-    }
     // 轮播图
     .banner {
       width: 375px;

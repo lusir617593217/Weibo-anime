@@ -37,15 +37,17 @@
 
     <!-- main -->
     <main>
-      <ul>
-        <li class="item" v-for="item in cateList" :key="item.comic_id">
+      <ul v-if="cateList.length!==0">
+        <li class="item" v-for="item in cateList" :key="item.comic_id" @click="goDetail(item.comic_id)">
           <div class="pic">
-            <img :src="item.comic_hcover" alt="">
+            <img v-lazy="item.comic_hcover" alt="">
           </div>
           <p>{{ item.comic_name }}</p>
           <span>{{ item.comic_desc }}</span>
         </li>
       </ul>
+      <!-- 遮罩层 -->
+      <MyMask :isShow="cateList.length===0"></MyMask>
     </main>
   </div>
 </template>
@@ -53,11 +55,14 @@
 <script>
 // 引入 header 组件
 import MyHeader from '../../components/MyHeader'
+// 引入遮罩层组件
+import MyMask from '../../components/MyMask'
 import { getCateNavList, getCateList } from '../../api/cartoon'
 export default {
   name: 'Cate',
   components: {
-    MyHeader
+    MyHeader,
+    MyMask
   },
   data () {
     return {
@@ -90,8 +95,15 @@ export default {
       })
     },
     getCateList (cateId, endId, payId) {
+      this.cateList = []
       getCateList(cateId, endId, payId).then(res => {
         this.cateList = res.data.data
+      })
+    },
+    // 去详情页
+    goDetail (id) {
+      this.$router.push({
+        path: `/detail/${id}`
       })
     }
   },
@@ -135,6 +147,7 @@ export default {
   main {
     flex: 1;
     overflow: auto;
+    position: relative;
     ul {
       display: flex;
       justify-content: space-between;

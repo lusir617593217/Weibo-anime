@@ -5,12 +5,24 @@
 
     <!-- main -->
     <main>
-      <div class="cartoon-item" v-for="item in endList" :key="item.info_id" @click="goDetail(item.object_id)">
-        <div class="pic">
-          <img :src="item.image_ext_url" alt="">
-        </div>
-        <p><span :class="item.cate_list[0].cate_en_name">{{ item.cate_list[0].cate_cn_name }}</span>{{ item.extra.name }}</p>
-      </div>
+      <ul v-if="endList.length!==0">
+        <li class="cartoon-item"
+          v-for="item in endList"
+          :key="item.info_id"
+          @click="goDetail(item.object_id)"
+        >
+          <div class="pic">
+            <img v-lazy="item.image_ext_url" alt="">
+          </div>
+          <p>
+            <span :class="item.cate_list[0].cate_en_name">{{ item.cate_list[0].cate_cn_name }}</span>
+            {{ item.extra.name }}
+          </p>
+        </li>
+      </ul>
+
+      <!-- 遮罩层 -->
+      <MyMask :isShow="endList.length===0"></MyMask>
     </main>
   </div>
 </template>
@@ -18,11 +30,15 @@
 <script>
 // 引入 header 组件
 import MyHeader from '../../components/MyHeader'
+// 引入 遮罩层 组件
+import MyMask from '../../components/MyMask'
+
 import { getEndList } from '../../api/cartoon'
 export default {
   name: 'End',
   components: {
-    MyHeader
+    MyHeader,
+    MyMask
   },
   data () {
     return {
@@ -54,6 +70,7 @@ export default {
   flex-direction: column;
   main {
     flex: 1;
+    position: relative;
     overflow: auto;
   }
   .cartoon-item {
@@ -65,7 +82,6 @@ export default {
       height: 211px;
       border-radius: 8px;
       overflow: hidden;
-      background-color: pink;
       img {
         width: 100%;
       }
