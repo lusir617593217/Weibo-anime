@@ -49,3 +49,11 @@ export const getCateList = (cateId, endId, payId) => {
     }
   })
 }
+
+// 排行榜接口
+export const getRankList = (type) => {
+  return request({
+    method: 'get',
+    url: `/api/wbcomic/home/${type}?_type=h5`
+  })
+}

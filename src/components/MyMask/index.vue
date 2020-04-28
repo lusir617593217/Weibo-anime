@@ -26,7 +26,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: #f4f4f4;
+  background-color: #fefefe;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -23,10 +23,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/style/mixin.scss';
+// @import '@/assets/style/mixin.scss';
 
 .my-header {
-  @include border-bottom;
+  // @include border-bottom;
   height: 44px;
   width: 100%;
   img {

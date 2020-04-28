@@ -13,20 +13,19 @@
 import Swiper from 'swiper'
 export default {
   name: 'Swiper',
-  updated () {
-    if (!this.swiper) {
-      this.swiper = new Swiper('.my-swiper', {
-        loop: true, // 循环模式选项
-        autoplay: {
-          delay: 2000,
-          stopOnLastSlide: false,
-          disableOnInteraction: true
-        },
-        pagination: {
-          el: '.swiper-pagination'
-        }
-      })
-    }
+  mounted () {
+    this.swiper = new Swiper('.my-swiper', {
+      loop: true, // 循环模式选项
+      autoplay: {
+        delay: 2000,
+        stopOnLastSlide: false,
+        disableOnInteraction: true
+      },
+      pagination: {
+        el: '.swiper-pagination'
+      },
+      observer: true
+    })
   }
 
 }

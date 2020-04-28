@@ -13,7 +13,7 @@ import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  loading: require('./assets/images/lazy.gif'),
+  loading: require('@/assets/images/lazy.gif'),
   attempt: 1
 })
 
