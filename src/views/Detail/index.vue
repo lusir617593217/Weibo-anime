@@ -28,7 +28,7 @@
         <!-- startRead -->
         <div class="start-read">
           <span>暂未阅读</span>
-          <button>开始阅读</button>
+          <button @click="goRead">开始阅读</button>
         </div>
 
         <!-- detail or catalog -->
@@ -69,6 +69,7 @@
             :class="{disable: isReverse ? chapter_list.length-index > 20 : index >= 20 }"
             v-for="(item, index) in chapter_list"
             :key="item.chapter_id"
+            @click="goReadCatalog(item.chapter_id, index)"
           >{{ item.chapter_name }}</li>
         </ul>
       </section>
@@ -112,6 +113,20 @@ export default {
     sort () {
       this.isReverse = !this.isReverse
       this.chapter_list.reverse()
+    },
+    goRead () {
+      const id = this.comic.chapter_tryread_ids.split(',')[0]
+      console.log(id)
+      this.$router.push({
+        path: `/read/${id}`
+      })
+    },
+    goReadCatalog (id, index) {
+      if ((this.isReverse && this.chapter_list.length - index <= 20) || (!this.isReverse && index <= 19)) {
+        this.$router.push(`/read/${id}`)
+      } else {
+        alert('当前章节需要付费！')
+      }
     }
   },
   created () {

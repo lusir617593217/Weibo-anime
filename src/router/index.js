@@ -7,6 +7,9 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    meat: {
+      keepAlive: true // 需要被缓存
+    },
     component: () => import('../views/Home')
   },
   {
@@ -50,13 +53,30 @@ const routes = [
     component: () => import('../views/Detail')
   },
   {
+    path: '/read/:id',
+    name: 'Read',
+    component: () => import('../views/Read')
+  },
+  {
+    path: '/catalog/:id',
+    name: 'Catalog',
+    component: () => import('../views/Catalog')
+  },
+  {
     path: '/',
     redirect: '/home'
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
+
 })
 
 export default router

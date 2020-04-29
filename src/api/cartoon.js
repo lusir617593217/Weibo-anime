@@ -77,3 +77,17 @@ export const getDetailDate = (id) => {
     url: `/api/wbcomic/comic/comic_show?comic_id=${id}&create_source=h5&_=1588069267216&_type=h5`
   })
 }
+
+// 漫画阅读接口
+export const getReadList = (id) => {
+  return request({
+    method: 'get',
+    url: '/api/wbcomic/comic/comic_play',
+    params: {
+      chapter_id: id,
+      create_source: 'h5',
+      _: Date.now(),
+      _type: 'h5'
+    }
+  })
+}

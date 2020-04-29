@@ -1,6 +1,6 @@
 <template>
   <div class="no-data" v-if="isShow">
-    <img src="@/assets/images/home-no-data.png" alt="">
+    <img class="no-data-pic" src="@/assets/images/home-no-data.png" alt="">
     <p>页面加载中...</p>
   </div>
 </template>
@@ -10,7 +10,7 @@ export default {
   name: 'MyMask',
   props: {
     isShow: {
-      type: Boolean,
+      // type: Boolean,
       default: false
     }
   }
@@ -31,7 +31,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  img {
+  .no-data-pic {
     width: 184px;
     height: 184px;
   }
