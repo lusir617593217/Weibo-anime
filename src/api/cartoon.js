@@ -91,3 +91,19 @@ export const getReadList = (id) => {
     }
   })
 }
+
+// 热门搜索数据接口
+export const getHotSearchList = () => {
+  return request({
+    method: 'get',
+    url: '/api/wbcomic/home/hot_words?_type=h5'
+  })
+}
+
+// 搜索结果数据接口
+export const getResultList = (word) => {
+  return request({
+    method: 'get',
+    url: `/api/wbcomic/home/search?word=${word}&page_num=1&_type=h5`
+  })
+}
