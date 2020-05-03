@@ -1,5 +1,7 @@
 // 引入 axios
 import axios from 'axios'
+// 引入 vant 库
+import { Dialog } from 'vant'
 
 // 封装 axios
 const request = axios.create({
@@ -23,7 +25,7 @@ request.interceptors.response.use(function (response) {
   if (res.code === 1) {
     return response.data
   } else {
-    alert(res.message)
+    Dialog({ message: res.message })
     return Promise.reject(res.message)
   }
 }, function (error) {

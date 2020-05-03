@@ -57,7 +57,9 @@ export default {
       if ((this.isReverse && this.chapter_list.length - index <= 20) || (!this.isReverse && index <= 19)) {
         this.$router.push(`/read/${id}`)
       } else {
-        alert('当前章节需要付费！')
+        this.$dialog.alert({
+          message: '当前章节需要付费哦！'
+        })
       }
     }
   },

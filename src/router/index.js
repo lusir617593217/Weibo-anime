@@ -28,6 +28,25 @@ const routes = [
     component: () => import('../views/End')
   },
   {
+    path: '/user',
+    name: 'User',
+    component: () => import('../views/User'),
+    children: [
+      {
+        path: 'login',
+        component: () => import('../views/User/Login')
+      },
+      {
+        path: 'register',
+        component: () => import('../views/User/Register')
+      },
+      {
+        path: '',
+        redirect: 'login'
+      }
+    ]
+  },
+  {
     path: '/more',
     name: 'More',
     component: () => import('../views/More')

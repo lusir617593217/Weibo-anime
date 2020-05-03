@@ -116,7 +116,6 @@ export default {
     },
     goRead () {
       const id = this.comic.chapter_tryread_ids.split(',')[0]
-      console.log(id)
       this.$router.push({
         path: `/read/${id}`
       })
@@ -125,7 +124,9 @@ export default {
       if ((this.isReverse && this.chapter_list.length - index <= 20) || (!this.isReverse && index <= 19)) {
         this.$router.push(`/read/${id}`)
       } else {
-        alert('当前章节需要付费！')
+        this.$dialog.alert({
+          message: '当前章节需要付费哦！'
+        })
       }
     }
   },
@@ -182,7 +183,7 @@ export default {
       position: relative;
       .bg {
         width: 100%;
-        height: 100%;
+        height: 99.9%;
       }
       .content {
         position: absolute;
@@ -219,7 +220,7 @@ export default {
           left: 0;
           bottom: 0;
           transform: rotateY(180deg);
-          z-index: 9999;
+          z-index: 0;
         }
       }
     }

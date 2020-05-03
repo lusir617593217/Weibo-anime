@@ -10,12 +10,17 @@ import 'lib-flexible'
 import 'swiper/css/swiper.min.css'
 // 图片来加载插件
 import VueLazyload from 'vue-lazyload'
+// vant 库
+import { Dialog } from 'vant'
+
 Vue.use(VueLazyload)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   loading: require('@/assets/images/lazy.gif'),
   attempt: 1
 })
+
+Vue.use(Dialog)
 
 Vue.config.productionTip = false
 
