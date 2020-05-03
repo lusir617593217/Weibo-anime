@@ -115,7 +115,13 @@ export default {
       this.chapter_list.reverse()
     },
     goRead () {
-      const id = this.comic.chapter_tryread_ids.split(',')[0]
+      let id = null
+      if (this.isReverse) {
+        id = this.chapter_list[this.chapter_list.length - 1].chapter_id
+      } else {
+        id = this.chapter_list[0].chapter_id
+      }
+      // const id = this.comic.chapter_tryread_ids.split(',')[0] 搜索结果中没有这个数据
       this.$router.push({
         path: `/read/${id}`
       })

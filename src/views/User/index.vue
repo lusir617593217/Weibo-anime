@@ -2,7 +2,7 @@
   <div class="page-user">
     <!-- top -->
     <div class="user-top">
-      <img src="../../assets/images/back-white.png" alt="">
+      <img @click="$router.back()" src="../../assets/images/back-white.png" alt="">
       <p>{{ action }}</p>
       <span @click="toggle">{{ message }}</span>
     </div>

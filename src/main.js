@@ -13,7 +13,6 @@ import VueLazyload from 'vue-lazyload'
 // vant 库
 import { Dialog } from 'vant'
 
-Vue.use(VueLazyload)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   loading: require('@/assets/images/lazy.gif'),
