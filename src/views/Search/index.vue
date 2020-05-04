@@ -28,7 +28,7 @@
             <img @click="refresh" src="../../assets/images/refresh.png" alt="">
           </div>
           <ul class="search-word">
-            <li v-for="item in randHotList" :key="item.object_id" @click="goDetail(item.object_id)">
+            <li v-for="item in randHotList" :key="item.object_id" @click="hotClick(item.object_id, item.title)">
               {{ item.title }}
             </li>
           </ul>
@@ -158,6 +158,13 @@ export default {
           this.showPage = 0
         }
       }, 300)
+    },
+
+    // 点击热门搜索词
+    hotClick (id, text) {
+      this.search_work = text
+      this.saveLocal()
+      this.goDetail(id)
     },
 
     // 去详情页

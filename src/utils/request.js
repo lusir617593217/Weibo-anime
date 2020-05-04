@@ -6,7 +6,7 @@ import { Dialog } from 'vant'
 // 封装 axios
 const request = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? 'http://106.53.120.144' : 'http://localhost:8080',
-  timeout: 10000
+  timeout: 150000
 })
 
 // 添加请求拦截器

@@ -101,7 +101,12 @@ export default {
       clearTimeout(this.tiemr2)
       this.tiemr2 = setTimeout(() => {
         const currentIndex = this.list.chapter_list.findIndex(item => item.chapter_id === this.id)
-        if (currentIndex === 0) return
+        if (currentIndex === 0) {
+          this.$dialog.alert({
+            message: '当前是第一章了哦！'
+          })
+          return
+        }
         const nextId = this.list.chapter_list[currentIndex - 1].chapter_id
         this.$route.params.id = nextId
         this.id = nextId
